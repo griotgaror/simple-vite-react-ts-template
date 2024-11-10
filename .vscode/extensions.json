@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "yoavbls.PrettyTypeScriptErrors",
+        "usernamehw.errorlens",
+        "christian-kohler.npm-intellisense",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "PKief.material-icon-theme",
+        "nexxai.material-synthwave-vscode"
+    ]
+}

@@ -1,0 +1,61 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "types": ["jest", "@testing-library/jest-dom", "node"],
+        "allowJs": true,
+
+        // Skip type checking of all declaration files
+        "skipLibCheck": true,
+
+        // Disables namespace imports (import * as fs from "fs")
+        // and enables CJS/AMD/UMD style imports (import fs from "fs")
+        "esModuleInterop": true,
+
+        "strictFunctionTypes": true,
+
+        // Treat each file as a separate module
+        // (recommended for Vite and Babel compatibility)
+        "isolatedModules": true,
+
+        // Enable all strict type checking options
+        "strict": true,
+
+        // Use the latest ECMAScript module syntax
+        "module": "ESNext",
+
+        // Resolve modules similar to Node.js (important for Node module resolution)
+        "moduleResolution": "Node",
+
+        // Allows default imports from modules with no default export
+        "allowSyntheticDefaultImports": true,
+
+        // Disallow the 'any' type unless explicitly defined
+        "noImplicitAny": true,
+
+        // Include modules imported with .json extension
+        "resolveJsonModule": true,
+
+        // Do not emit output (meaning do not compile code, only perform type checking)
+        "noEmit": true,
+
+        // Report errors for unused local variables
+        "noUnusedLocals": true,
+
+        // Report errors for unused parameters in functions
+        "noUnusedParameters": true,
+
+        // Always parse in strict mode, adding "use strict" to every file
+        "alwaysStrict": true,
+
+        // Use the modern JSX transform introduced in React 17 (react-jsx)
+        "jsx": "react",
+
+        // Aliases for cleaner imports
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["./src", "src/types/**/*.d.ts"],
+    "exclude": ["node_modules", "build", "dist"]
+}
