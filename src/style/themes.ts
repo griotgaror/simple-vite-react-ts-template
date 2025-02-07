@@ -5,7 +5,6 @@ export interface ColorModeData {
     detailColor2: string;
 }
 
-// Change Name to colorModes
 export const colorModes = {
     Default: {
         bgPrimary: '#211835',
@@ -15,5 +14,4 @@ export const colorModes = {
     },
 };
 
-// Change Name to ColorModeVariants;
 export type ThemesVariants = keyof typeof colorModes;
