@@ -9,10 +9,14 @@ if (!rootElement) {
     throw new Error('Root element not found');
 }
 
-ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-        <ContextProviders>
-            <Router />
-        </ContextProviders>
-    </React.StrictMode>,
-);
+if (!rootElement.dataset.rendered) {
+    rootElement.dataset.rendered = 'true';
+
+    ReactDOM.createRoot(rootElement).render(
+        <React.StrictMode>
+            <ContextProviders>
+                <Router />
+            </ContextProviders>
+        </React.StrictMode>,
+    );
+}
