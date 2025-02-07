@@ -1,7 +1,7 @@
 {
     "name": "simple-vite-react-ts-template",
     "private": true,
-    "version": "0.0.0",
+    "version": "0.1.0",
     "scripts": {
         "dev": " vite --config vite.config.ts",
         "build": "vite build --config vite.config.ts",
@@ -13,7 +13,8 @@
         "format": "npm run prettier:fix && npm run lint:fix",
         "test": "vitest --run",
         "test:ui": "vitest --ui",
-        "updateVersion": "source nextVersion.sh --auto-commit",
+        "bump-version": "node nextVersion.cjs",
+        "bump-version:auto-commit": "node nextVersion.cjs --auto-commit",
         "submodule-update": "git submodule update --remote",
         "prepare": "husky"
     },

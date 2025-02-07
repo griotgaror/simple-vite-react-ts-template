@@ -1,0 +1,1 @@
+bun run bump-version:auto-commit
