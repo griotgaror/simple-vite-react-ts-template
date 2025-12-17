@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const serverConfig = require('../serverConfig');
@@ -24,9 +25,7 @@ const swaggerDoc = swaggerJSDoc(swaggerSpecOpt);
 
 const swaggerUiOpt = {
     customSiteTitle: 'Backend Api-Docs',
-    customCssUrl: `${serverConfig.docsUrl}/themes/darkMonokai.css`,
-    explorer: true,
-    isExplorer: true,
+    customCss: `${serverConfig.docsUrl}/themes/darkMonokai.css`,
 };
 
 const addSwaggerDocs = function (app) {

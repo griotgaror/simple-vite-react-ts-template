@@ -41,6 +41,7 @@ export default function viteFontsPlugin(): Plugin {
     let isProd = false;
     const viteAssetTxt = '__VITE_ASSET__';
     const emittedFonts = new Map<string, string>();
+    let fontFiles: string[] = [];
 
     const getFontUrl = function (file: string): string {
         if (!isProd) return file;
@@ -55,11 +56,10 @@ export default function viteFontsPlugin(): Plugin {
         },
 
         buildStart() {
+            fontFiles = fg.sync('./src/assets/fonts/**/*.{woff2,ttf}');
             if (!isProd) return;
 
-            const files = fg.sync('./src/assets/fonts/**/*.{woff2,ttf}');
-
-            for (const file of files) {
+            for (const file of fontFiles) {
                 const fontFileName = path.basename(file);
                 const id = this.emitFile({
                     type: 'asset',
@@ -71,7 +71,7 @@ export default function viteFontsPlugin(): Plugin {
         },
 
         transformIndexHtml() {
-            const fonts = Array.from(emittedFonts.keys()).map(parseFont);
+            const fonts = fontFiles.map(parseFont);
 
             const preloads = fonts.map((font) => ({
                 tag: 'link',

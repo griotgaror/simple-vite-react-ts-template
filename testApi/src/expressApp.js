@@ -1,5 +1,6 @@
 const cors = require('cors');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 
 const serverConfig = require('./serverConfig');
@@ -33,11 +34,15 @@ app.use(
 
 // Catch-All Redirect
 app.use(function (req, res, next) {
-    const apiRoutes = req.path.startsWith(serverConfig.apiUrl);
-    const swaggerDocs = req.path.startsWith(serverConfig.docsUrl);
+    const isApiRoute = req.path.startsWith(serverConfig.apiUrl);
+    const isDocs = req.path.startsWith(serverConfig.docsUrl);
     const isWs = req.headers['upgrade'] === 'websocket';
 
-    if (apiRoutes || swaggerDocs || isWs) return next();
+    if (isApiRoute || isDocs || isWs) return next();
+
+    if (!fs.existsSync(indexHtml)) {
+        return res.redirect(serverConfig.docsUrl);
+    }
 
     res.sendFile(indexHtml, (err) => {
         if (err) next(err);
