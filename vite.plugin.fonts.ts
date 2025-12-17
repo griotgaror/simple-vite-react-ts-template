@@ -38,7 +38,7 @@ const parseFont = function (file: string): Font {
 };
 
 export default function viteFontsPlugin(): Plugin {
-    const isProd = process.env.NODE_ENV === 'production';
+    let isProd = false;
     const viteAssetTxt = '__VITE_ASSET__';
     const emittedFonts = new Map<string, string>();
 
@@ -50,7 +50,13 @@ export default function viteFontsPlugin(): Plugin {
     return {
         name: 'vite-font-plugin',
 
+        configResolved(config) {
+            isProd = config.command === 'build';
+        },
+
         buildStart() {
+            if (!isProd) return;
+
             const files = fg.sync('./src/assets/fonts/**/*.{woff2,ttf}');
 
             for (const file of files) {

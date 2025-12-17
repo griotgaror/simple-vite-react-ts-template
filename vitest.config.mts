@@ -10,6 +10,7 @@ export default defineConfig((configEnv) =>
                 environment: 'jsdom',
                 globals: true,
                 setupFiles: './src/__tests__/setupTest.tsx',
+                passWithNoTests: true,
             },
         }),
     ),
