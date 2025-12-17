@@ -1,37 +1,35 @@
 import 'styled-components';
 import { DefaultTheme } from 'styled-components';
-import { ColorModeData, ThemesVariants, colorModes } from './themes';
+import { ColorModeData, colorModes, defaultColorMode, ThemesVariants } from './themes';
 
 declare module 'styled-components' {
     export interface DefaultTheme {
         colorMode: ColorModeData;
         layout: {
-            headerHeight: string;
-            borderRadius: string;
-            gap: string;
-            padding: string;
-            buttonSize: string;
-            maxWidth: string;
+            borderRad: string;
+            btnSpace: string;
+            iconSize: string;
             boxShadow: string;
         };
         colors: {
             txt: string;
+            iconColor: string;
         };
     }
 }
 
-export const generateStyleConfig = (colorMode: ThemesVariants): DefaultTheme => ({
-    colorMode: colorModes[colorMode],
-    layout: {
-        headerHeight: '65px',
-        borderRadius: '4px',
-        gap: '15px',
-        padding: '15px',
-        buttonSize: '38px',
-        boxShadow: '3px 3px 15px rgba(20, 20, 20, 30%)',
-        maxWidth: '1420',
-    },
-    colors: {
-        txt: '#F2E4E4',
-    },
-});
+export const generateStyleConfig = function (colorMode: string | null): DefaultTheme {
+    return {
+        colorMode: colorModes[(colorMode as ThemesVariants) || defaultColorMode],
+        layout: {
+            borderRad: '6px',
+            btnSpace: '0.8rem',
+            iconSize: '20.5px',
+            boxShadow: '3px 3px 15px rgba(20, 20, 20, 30%)',
+        },
+        colors: {
+            txt: '#F2E4E4',
+            iconColor: 'rgb(250, 250, 250)',
+        },
+    };
+};

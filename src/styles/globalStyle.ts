@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     html, body, #app {
-        background-color: ${({ theme }) => theme.colorMode.primary};
+        background-color: ${({ theme }) => theme.colorMode.primaryColor};
         height: 100dvh;
         width: 100%;
         max-width: 100%;
@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     /* Stile, die nur für nicht-WebKit-basierte Browser gelten */
     @media all and (min--moz-device-pixel-ratio:0) {
         * {
-            scrollbar-color: ${({ theme }) => theme.colorMode.details2} transparent;
+            scrollbar-color: ${({ theme }) => theme.colorMode.detailColor2} transparent;
         }
     }
     
@@ -38,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     ::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.colorMode.details2};
+        background: ${({ theme }) => theme.colorMode.detailColor2};
         border-radius: 20px;
         -webkit-border-radius: 20px;
     }

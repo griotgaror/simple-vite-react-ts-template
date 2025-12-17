@@ -12,7 +12,9 @@ export const _AppLayout = styled(motion.div).attrs({
         },
     },
 })`
-    height: 100%;
+    min-height: 100dvh;
     width: 100%;
+    position: absolute;
+    z-index: 1;
     display: grid;
 `;

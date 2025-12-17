@@ -2,46 +2,42 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import useReactContext from '@/hooks/useReactContext';
-import { SetState } from '@/types/global.types';
+import { ContextProviderProps } from '@/types/global.types';
 
+import useUpdateStates from '@/hooks/useUpdateStates';
 import { GlobalStyle } from '@/styles/globalStyle';
 import { generateStyleConfig } from '@/styles/styleConfig';
 import { ThemesVariants } from '@/styles/themes';
 
 export interface AppDataStates {
     isGlobalLoading: boolean;
-    defaultColorMode: ThemesVariants;
     activeColorMode: ThemesVariants | null;
 }
 
 export const initalValues: AppDataStates = {
     isGlobalLoading: false,
-    defaultColorMode: 'Default',
     activeColorMode: null,
 };
 
-interface AppDataCntxProps {
-    appDataStates: AppDataStates;
-    setAppDataStates: SetState<AppDataStates>;
+interface AppDataCntxProps extends AppDataStates {
+    updateAppDataStates: (states: Partial<AppDataStates>) => void;
 }
 
 const AppDataCntx = React.createContext<AppDataCntxProps | null>(null);
 
-interface AppDataProviderProps {
-    children: React.ReactNode;
-}
+interface AppDataProviderProps extends ContextProviderProps {}
 
 export const AppDataProvider = function ({ children }: AppDataProviderProps) {
-    const [appDataStates, setAppDataStates] =
-        React.useState<AppDataStates>(initalValues);
+    const [appDataStates, setAppDataStates] = React.useState<AppDataStates>(initalValues);
+    const { updateStates } = useUpdateStates(setAppDataStates);
 
     const contextValues: AppDataCntxProps = {
-        appDataStates,
-        setAppDataStates,
+        ...appDataStates,
+        updateAppDataStates: updateStates,
     };
 
-    const { defaultColorMode, activeColorMode } = appDataStates;
-    const styleConfig = generateStyleConfig(activeColorMode || defaultColorMode);
+    const { activeColorMode } = appDataStates;
+    const styleConfig = generateStyleConfig(activeColorMode);
 
     return (
         <AppDataCntx.Provider value={contextValues}>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ApiDataProvider } from './context/apiDataContext';
 import { AppDataProvider } from './context/appDataContext';
 
 interface ContextProvidersProps {
@@ -7,5 +8,9 @@ interface ContextProvidersProps {
 }
 
 export default function ContextProviders({ children }: ContextProvidersProps) {
-    return <AppDataProvider>{children}</AppDataProvider>;
+    return (
+        <ApiDataProvider>
+            <AppDataProvider>{children}</AppDataProvider>
+        </ApiDataProvider>
+    );
 }

@@ -1,15 +1,34 @@
 import AppLayout from '@/appLayout';
 import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import { indexRoutes } from './routes/indexRoutes';
+import { generateChildRoutes } from '@/utils/routeUtils';
+import { indexRoute, layoutRoutes } from './routes';
 
 const routerRoutes = [
+    {
+        index: true,
+        element: (
+            <Navigate
+                to={indexRoute}
+                replace
+            />
+        ),
+    },
     {
         path: '/',
         element: <AppLayout />,
         errorElement: <div>Error Page</div>,
-        children: [...indexRoutes],
+        children: generateChildRoutes(layoutRoutes),
+    },
+    {
+        path: '/*',
+        element: (
+            <Navigate
+                to='/'
+                replace
+            />
+        ),
     },
 ];
 

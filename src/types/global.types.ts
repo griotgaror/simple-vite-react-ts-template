@@ -2,6 +2,10 @@ import React from 'react';
 
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
+export interface ContextProviderProps {
+    children: React.ReactNode;
+}
+
 export interface DefaultComponentProps {
     className?: string;
     children?: React.ReactNode;
@@ -10,16 +14,15 @@ export interface DefaultComponentProps {
 
 export interface PopupDefaultProps extends DefaultComponentProps {
     isVisible: boolean;
+    closeOnOverlayerClick?: boolean;
     title?: string;
-    titleIcon?: string;
-    closeFn?: () => void;
+    onClose?: () => void;
     isLoading?: boolean;
     zindex?: number;
     onExitComplete?: () => void;
 }
 
-export interface DefaultImageProps
-    extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface DefaultImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     size?: string;
 }
 
