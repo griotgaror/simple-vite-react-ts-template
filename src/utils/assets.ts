@@ -1,10 +1,5 @@
-import OpenSansRegular from '@/assets/fonts/OpenSans-Regular.ttf';
+import logo from '@/assets/images/logo.webp';
 
 export const assets = {
-    fonts: {
-        openSans: {
-            family: 'Open Sans',
-            regular: OpenSansRegular,
-        },
-    },
+    logo,
 };

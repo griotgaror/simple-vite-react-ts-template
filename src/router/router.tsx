@@ -14,13 +14,9 @@ const routerRoutes = [
 ];
 
 const router = createBrowserRouter(routerRoutes, {
-    basename: __BASE__,
+    basename: __globals__.baseUrl,
 });
 
-// reload the page in development for correct basename
-if (window.location.pathname === '/' && !__IS_PRODUCTION__) {
-    window.location.replace(__BASE__);
-}
 export default function Router() {
     return <RouterProvider router={router} />;
 }

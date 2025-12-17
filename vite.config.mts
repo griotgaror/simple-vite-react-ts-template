@@ -3,10 +3,13 @@ import * as path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import viteFontsPlugin from './vite.plugin.fonts';
 
 import generateGlobals from './app.config';
 import devConfig from './vite.dev.config';
 import prodConfig from './vite.prod.config';
+
+import { colorModes, defaultColorMode } from './src/styles/themes';
 
 export default defineConfig(({ command }) => {
     const isProd = command === 'build';
@@ -15,21 +18,26 @@ export default defineConfig(({ command }) => {
     const globals = generateGlobals(isProd);
     console.log(globals);
 
-    const envConfig = isProd ? prodConfig() : devConfig();
-
     return {
-        ...envConfig,
-        base: JSON.parse(globals.__BASE__),
+        ...(isProd ? prodConfig() : devConfig()),
+        base: globals.baseUrl,
         define: {
-            ...globals,
+            __globals__: globals,
             'process.env.IS_VITEST_UI': JSON.stringify(isVitestUICommand),
         },
         plugins: [
+            viteFontsPlugin(),
             !isVitestUICommand &&
                 createHtmlPlugin({
                     inject: {
                         data: {
-                            title: JSON.parse(globals.__TITLE__),
+                            title: globals.title,
+                            injectStyle: `
+                            <style>
+                                html {
+                                    background-color: ${colorModes[defaultColorMode].primary} !important;
+                                }
+                            </style>`,
                         },
                     },
                 }),

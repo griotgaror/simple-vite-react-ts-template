@@ -1,7 +1,7 @@
 import React from 'react';
-import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
+import styled, { RuleSet, css } from 'styled-components';
 
-const customClasses: Record<string, FlattenSimpleInterpolation> = {
+const customClasses: Record<string, RuleSet> = {
     flex: css`
         display: flex;
     `,
@@ -28,7 +28,7 @@ const customClasses: Record<string, FlattenSimpleInterpolation> = {
 };
 
 interface CreateStyleValue {
-    (className: string | undefined): string | FlattenSimpleInterpolation;
+    (className: string | undefined): string | RuleSet;
 }
 
 export const createStyleValue: CreateStyleValue = function (className) {

@@ -2,10 +2,6 @@ import React from 'react';
 
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
-export interface ContextProviderProps {
-    children: React.ReactNode;
-}
-
 export interface DefaultComponentProps {
     className?: string;
     children?: React.ReactNode;

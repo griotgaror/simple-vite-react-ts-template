@@ -1,12 +1,7 @@
-import { assets } from '@/utils/assets';
+// import { generateFontFaces } from '@/utils/assets';
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-    @font-face {
-        font-family: ${assets.fonts.openSans.family};
-        src: url(${assets.fonts.openSans.regular});
-    }
-
     *,
     *::before,
     *::after {
@@ -14,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0px;
         box-sizing: border-box;
         user-select: none;
-        font-family: ${assets.fonts.openSans.family};
+        font-family: 'Comfortaa';
         font-size: 16px;
         color: ${({ theme }) => theme.colors.txt};
         line-height: 1.2;
@@ -24,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     html, body, #app {
-        background-color: ${({ theme }) => theme.colorMode.bgPrimary};
+        background-color: ${({ theme }) => theme.colorMode.primary};
         height: 100dvh;
         width: 100%;
         max-width: 100%;
@@ -33,8 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     /* Stile, die nur für nicht-WebKit-basierte Browser gelten */
     @media all and (min--moz-device-pixel-ratio:0) {
         * {
-            scrollbar-color: ${({ theme }) =>
-                theme.colorMode.detailColor2} transparent;
+            scrollbar-color: ${({ theme }) => theme.colorMode.details2} transparent;
         }
     }
     
@@ -44,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     ::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.colorMode.detailColor2};
+        background: ${({ theme }) => theme.colorMode.details2};
         border-radius: 20px;
         -webkit-border-radius: 20px;
     }

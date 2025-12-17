@@ -2,12 +2,11 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import useReactContext from '@/hooks/useReactContext';
-import { ContextProviderProps, SetState } from '@/types/global.types';
-import { createReactContext } from '@/utils/reactUtils';
+import { SetState } from '@/types/global.types';
 
-import { GlobalStyle } from '@/style/globalStyle';
-import { generateStyleConfig } from '@/style/styleConfig';
-import { ThemesVariants } from '@/style/themes';
+import { GlobalStyle } from '@/styles/globalStyle';
+import { generateStyleConfig } from '@/styles/styleConfig';
+import { ThemesVariants } from '@/styles/themes';
 
 export interface AppDataStates {
     isGlobalLoading: boolean;
@@ -26,9 +25,11 @@ interface AppDataCntxProps {
     setAppDataStates: SetState<AppDataStates>;
 }
 
-const AppDataCntx = createReactContext<AppDataCntxProps>();
+const AppDataCntx = React.createContext<AppDataCntxProps | null>(null);
 
-interface AppDataProviderProps extends ContextProviderProps {}
+interface AppDataProviderProps {
+    children: React.ReactNode;
+}
 
 export const AppDataProvider = function ({ children }: AppDataProviderProps) {
     const [appDataStates, setAppDataStates] =

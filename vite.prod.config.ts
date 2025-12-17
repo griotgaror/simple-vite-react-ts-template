@@ -14,10 +14,7 @@ export default function prodConfig(): UserConfig {
                     assetFileNames: (assetInfo: any) => {
                         const noHashExtensions = /\.(ttf|png|webp)$/i;
 
-                        if (
-                            assetInfo.name &&
-                            noHashExtensions.test(assetInfo.name)
-                        ) {
+                        if (assetInfo.name && noHashExtensions.test(assetInfo.name)) {
                             return 'static/[name][extname]';
                         }
 
